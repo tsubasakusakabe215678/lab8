@@ -1,0 +1,104 @@
+<html>
+<head>
+<title> Lab 8b2 </title>
+<script src="scripts/processing.js"></script>
+<script type="text/processing" data-processing-target="mycanvas">
+
+PImage ball;
+PImage glass;
+int showball;
+int showglasses;
+int transferball;
+int transferglasses;
+
+void setup(){
+
+	size( 1000, 1000 );
+
+	frameRate( 30 );
+
+	
+
+	if (sessionStorage.transferball == null)
+	{
+		showball = 0;
+	}
+	else
+	{
+		showball = sessionStorage.transferball;
+	}
+
+
+	if (sessionStorage.transferglasses == null)
+	{
+		showglasses = 0;
+	}
+	else
+	{
+		showglasses = sessionStorage.transferglasses;
+	}
+
+	ball = loadImage("images/soccer.png")
+	glasses = loadImage("images/glass.png")
+}
+
+
+void draw()
+{
+	background(250,250,250);
+	
+	if(mousePressed == true && mouseButton == LEFT)
+		{
+			if (mouseX > 10 && mouseX < 210 && 
+				mouseY > 10 && mouseY < 210)
+				{
+					showball = 1;
+				}
+		
+			if (mouseX > 10 && mouseX < 210 && 
+				mouseY > 220 && mouseY < 420)
+				{
+					showglasses = 1;
+				}
+		}
+
+	if(showball == 1)
+	{
+		image(ball,500,10,200,200)
+	}
+	
+	if(showglasses == 1)
+	{
+		image(glasses,500,220,200,200)
+	}
+	
+	if (mousePressed == true && mouseX > 10 && mouseX < 210 && mouseY > 430 && mouseY < 630)
+	{
+		sessionStorage.transferball = showball;
+		sessionStorage.transferglasses = showglasses;
+		link("index.html");
+	}	
+	
+	fill(255,255,255);
+	rect(10,10,200,200);
+	rect(10,220,200,200);
+	rect(10,430,200,200);
+	
+	
+	fill(0,0,0);
+	text("Show Ball",80,110)
+	text("Show Glasses",80,320)
+	text("lab8b",80,530)
+	
+	
+	
+}
+
+</script>
+<canvas id="mycanvas"></canvas>
+</head>
+
+<body>
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<html>
+<head>
+<title> Lab 8 </title>
+<script src="scripts/processing.js"></script>
+<script type="text/processing" data-processing-target="mycanvas">
+
+PImage ball;
+PImage glass;
+int showball;
+int showglasses;
+	
+void setup(){
+
+size( 1000, 1000 );
+	
+frameRate( 30 );
+	
+ball = loadImage("images/soccer.png")
+glasses = loadImage("images/glass.png")
+	
+//ball
+showball = 0;
+	
+//glasses
+showglasses = 0;
+	
+}
+	
+	
+void draw()
+{
+	background(250,250,250);
+	
+	if(mousePressed == true && mouseButton == LEFT)
+		{
+			if (mouseX > 10 && mouseX < 210 && 
+				mouseY > 10 && mouseY < 210)
+				{
+					showball = 1;
+				}
+		
+			if (mouseX > 10 && mouseX < 210 && 
+				mouseY > 220 && mouseY < 420)
+				{
+					showglasses = 1;
+				}
+		}
+
+	if(showball == 1)
+	{
+		image(ball,500,10,200,200)
+	}
+	
+	if(showglasses == 1)
+	{
+		image(glasses,500,220,200,200)
+	}
+	
+	fill(255,255,255);
+	rect(10,10,200,200);
+	rect(10,220,200,200);
+	
+	fill(0,0,0);
+	text("Show Ball",80,110)
+	text("Show Glasses",80,320)
+	
+	
+	
+	
+}
+
+</script>
+<canvas id="mycanvas"></canvas>
+</head>
+
+<body>
+
+</body>
+</html>
